@@ -2132,27 +2132,39 @@ function bindEvents()
     else if (e.keyCode >= 48 && e.keyCode <= 57 && !e.ctrlKey)  // Numbers 1 to 0
     {
       e.preventDefault();
+      // "0" is 9, "1" to "9" is 0 to 8.
       var i = (e.keyCode == 48) ? 9 : e.keyCode - 49;
-      if (e.shiftKey) i += 8;
       var els = ID("colors").querySelectorAll("b");
-      if (i < els.length)
+
+      if (chooseBackground)  // 1 to 0, and Shift + 1 to 0
       {
-        var color = els[i].style.backgroundColor;
-        if (els[i].id == "eraser") color = "eraser";
-        if (chooseBackground)
+        if (e.shiftKey) i += 8;
+        if (i < els.length && els[i].id != "eraser")
         {
-          if (color != "eraser")
-          {
-            anbt.SetBackground(color);
-          }
+          var color = els[i].style.backgroundColor;
+          anbt.SetBackground(color);
           chooseBackground = false;
           ID("colors").classList.remove("setbackground");
           ID("setbackground").classList.remove("sel");
-        } else {
+        }
+      } else {  // 1 to 0 toggle between two colors
+        i *= 2;
+        if (i < els.length)
+        {
+          var color = els[i].style.backgroundColor;
+          if (els[i].id == "eraser") color = "eraser";
+
+          if (anbt.color[0] == color && i + 1 < els.length)
+          {
+            i += 1;
+            var color = els[i].style.backgroundColor;
+            if (els[i].id == "eraser") color = "eraser";
+          }
           anbt.SetColor(0, color);
           updateColorIndicators();
         }
       }
+
     }
     else if (e.keyCode == "F".charCodeAt(0) && e.shiftKey)  // Shift+F
     {
