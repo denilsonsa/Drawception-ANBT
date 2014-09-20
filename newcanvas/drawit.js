@@ -2183,7 +2183,27 @@ function bindEvents()
         }
       }
     }
-    else if (e.keyCode == 32 && !e.ctrlKey && !e.altKey && !e.shiftKey)
+    else if (e.keyCode == "A".charCodeAt(0) && !e.ctrlKey) // A for brush size
+    {
+      e.preventDefault();
+      ID("brush0").click();
+    }
+    else if (e.keyCode == "S".charCodeAt(0) && !e.ctrlKey) // S for brush size
+    {
+      e.preventDefault();
+      ID("brush1").click();
+    }
+    else if (e.keyCode == "D".charCodeAt(0) && !e.ctrlKey) // D for brush size
+    {
+      e.preventDefault();
+      ID("brush2").click();
+    }
+    else if (e.keyCode == "F".charCodeAt(0) && !e.ctrlKey) // F for brush size
+    {
+      e.preventDefault();
+      ID("brush3").click();
+    }
+    else if (e.keyCode == 32 && !e.ctrlKey && !e.altKey && !e.shiftKey)  // Space
     {
       playCommonDown(e);
     }
