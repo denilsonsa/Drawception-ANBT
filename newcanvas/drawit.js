@@ -2095,19 +2095,19 @@ function bindEvents()
       };
       ID("svgContainer").addEventListener('mousemove', removeEyedropper);
     }
-    else if (e.keyCode == "Z".charCodeAt(0) && e.ctrlKey)
+    else if (e.keyCode == "Z".charCodeAt(0))  // Z or Ctrl+Z
     {
       e.preventDefault();
       ID("play").classList.remove("pause");
       anbt.Undo();
     }
-    else if (e.keyCode == "Y".charCodeAt(0) && e.ctrlKey)
+    else if (e.keyCode == "Y".charCodeAt(0))  // Y or Ctrl+Y
     {
       e.preventDefault();
       ID("play").classList.remove("pause");
       anbt.Redo();
     }
-    else if (e.keyCode == "X".charCodeAt(0))
+    else if (e.keyCode == "X".charCodeAt(0))  // X
     {
       e.preventDefault();
       var c0 = anbt.color[0];
@@ -2116,20 +2116,20 @@ function bindEvents()
       anbt.SetColor(1, c0);
       updateColorIndicators();
     }
-    else if (e.keyCode == "B".charCodeAt(0))
+    else if (e.keyCode == "B".charCodeAt(0))  // B
     {
       e.preventDefault();
       chooseBackground = true;
       ID("colors").classList.add("setbackground");
       ID("setbackground").classList.add("sel");
     }
-    else if (e.keyCode == "E".charCodeAt(0) && !e.ctrlKey)
+    else if (e.keyCode == "E".charCodeAt(0) && !e.ctrlKey)  // E but not Ctrl+E
     {
       e.preventDefault();
       anbt.SetColor(0, "eraser");
       updateColorIndicators();
     }
-    else if (e.keyCode >= 48 && e.keyCode <= 57 && !e.ctrlKey)
+    else if (e.keyCode >= 48 && e.keyCode <= 57 && !e.ctrlKey)  // Numbers 1 to 0
     {
       e.preventDefault();
       var i = (e.keyCode == 48) ? 9 : e.keyCode - 49;
@@ -2154,7 +2154,7 @@ function bindEvents()
         }
       }
     }
-    else if (e.keyCode == "F".charCodeAt(0) && e.shiftKey)
+    else if (e.keyCode == "F".charCodeAt(0) && e.shiftKey)  // Shift+F
     {
       e.preventDefault();
       anbt.ClearWithColor(anbt.color[0]);
